@@ -1,8 +1,0 @@
-pipeline {
-	agent any 
-			stages {
-				stage('SCM Checkout') {
-					git credentialsId: '905a30a4-6dba-4af1-ab82-f8c0c4aca7d0', url: 'https://github.com/kundan-kumar1993/sample-api'
-				}
-			}
-		}
