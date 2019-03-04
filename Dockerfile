@@ -8,14 +8,14 @@ EXPOSE 443
 
 FROM microsoft/dotnet:2.1-sdk-nanoserver-1803 AS build
 WORKDIR /src
-COPY ["SampleAPI.csproj", "SampleAPI/"]
+COPY ["SampleAPI/SampleAPI.csproj", "SampleAPI/"]
 RUN dotnet restore "SampleAPI/SampleAPI.csproj"
 COPY . .
 #WORKDIR "/src/SampleAPI"
-RUN dotnet build "SampleAPI.csproj" -c Release -o /app
+RUN dotnet build "SampleAPI/SampleAPI.csproj" -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish "SampleAPI.csproj" -c Release -o /app
+RUN dotnet publish "SampleAPI/SampleAPI.csproj" -c Release -o /app
 
 FROM base AS final
 WORKDIR /app

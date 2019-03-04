@@ -1,9 +1,15 @@
 pipeline {
-    stages {
-        stage('SCM Checkout') {
-            steps {
-                sh 'git credentialsId: '905a30a4-6dba-4af1-ab82-f8c0c4aca7d0', url: 'https://github.com/kundan-kumar1993/sample-api''
-            }
-        }
-    }
-}
+	agent any 
+			stages {
+				stage('SCM Checkout') {
+					steps {
+						git credentialsId: '905a30a4-6dba-4af1-ab82-f8c0c4aca7d0', url: 'https://github.com/kundan-kumar1993/sample-api'
+					}					
+				}
+				stage('Build Docker Image') {
+					steps {
+						sh 'docker build -t kundanr26/docker_api:1.0.0 .'
+					}
+				}
+			}
+		}
